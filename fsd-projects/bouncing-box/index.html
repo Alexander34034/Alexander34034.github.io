@@ -9,7 +9,7 @@
 		.box {
 			width: 70px;
 			height: 70px;
-			background-color: teal;
+			background-color: #ed1405;
 			font-size: 300%;
 			text-align: center;
 			user-select: none;
@@ -21,6 +21,7 @@
 		}
 
 		.board {
+			background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8lqSHoCcUep7DxjDce0AG2e0DmYwez894fKL8MtKDPBGoV-4:https://img.freepik.com/free-vector/abstract-realistic-technology-particle-background_52683-33064.jpg%3Fsemt%3Dais_items_boosted%26w%3D740&s");
 			height: 100vh;
 		}
 	</style>
@@ -31,6 +32,9 @@
 <body class="board">
 	<!-- HTML for the box -->
 	<div class="box">?</div>
+	moveBoxTo(boardWidth);
+
+
 
 	<script>
 		(function () {
@@ -64,7 +68,9 @@
 			//////////////////////////////////////////////////////////////////
 			/////////////////// YOUR CODE BELOW HERE /////////////////////////
 			//////////////////////////////////////////////////////////////////
-
+			var positionX = 0;
+			var speed = 7;
+			var points = 0;
 			// TODO 2 - Variable declarations 
 
 
@@ -75,8 +81,14 @@
 			turn it around! 
 			*/
 			function update() {
-
-
+				positionX = positionX + speed;
+				moveBoxTo(positionX);
+				if (positionX + 70 >= boardWidth) {
+  					speed = -12;
+				}
+				if (positionX <= 0) {
+  					speed = -speed;
+				}
 			};
 
 			/* 
@@ -85,8 +97,10 @@
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-
-
+				positionX = 0;
+				points++;
+				changeBoxText(points);
+				speed = 10 + points + 3;
 			};
 
 
